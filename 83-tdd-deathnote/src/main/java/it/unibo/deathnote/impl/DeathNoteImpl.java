@@ -38,7 +38,7 @@ public class DeathNoteImpl implements DeathNote {
         if(Objects.isNull(cause) || this.deathNote.isEmpty()) {
             throw new IllegalStateException("The name has to be written before the cause of death");
         }
-        
+
         if((System.currentTimeMillis() - this.timeStartWriting) <= ILLEGAL_CAUSE_TIMEOUT) {
             this.deathNote.get(this.lastName).setCause(cause);
             return true;
@@ -104,38 +104,5 @@ public class DeathNoteImpl implements DeathNote {
         public void setDetails(final String details){
             this.details = details;
         }
-
-        /*
-        public Death writeCause(final String cause) {
-            return System.currentTimeMillis() < this.timeOfDeath + TIMEOUT_CAUSE ? new Death(cause, this.details) : this;
-        }
-
-        public Death writeDetails(final String details) {
-            return System.currentTimeMillis() < this.timeOfDeath + TIMEOUT_DETAILS ? new Death(this.cause, details) : this;
-        }
-
-        @Override
-        public boolean equals(final Object obj) {
-            if (this == obj) {
-                return true;
-            }
-            if (!(obj instanceof Death other)) {
-                return false;
-            }
-            return Objects.equals(cause, other.cause)
-                && Objects.equals(details, other.details)
-                && timeOfDeath == other.timeOfDeath;
-        }
-
-        @Override
-        public int hashCode() {
-            if (hash == 0) {
-                hash = Objects.hash(cause, details, timeOfDeath);
-            }
-            return hash;
-        }
-        */
-
     }    
-
 }
